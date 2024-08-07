@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// App.tsx
+import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
+import Counter from './components/counter';
 
-export default function App() {
+export function App() {
+  const [count, setCount] = useState(0);
+
+  const addValue = () => {
+    setCount(count + 1);
+  };
+
+  const subtValue = () => {
+    setCount(count - 1);
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Counter count={count} onIncrement={addValue} onDecrement={subtValue} />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
+
+export default App;
